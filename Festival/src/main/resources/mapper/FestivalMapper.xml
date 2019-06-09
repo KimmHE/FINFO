@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTf-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finfo.mapper.FestivalMapper">
+
+	<!-- 페스티벌 작성 -->
+	<insert id="write" parameterType="com.finfo.domain.FestivalVO">
+		insert into FESTIVAL values (
+		festival_seq.nextval,
+		#{f_SUBJECT}, #{f_START}, #{f_END}, #{f_PLACE}, #{f_TAG1}, #{f_TAG2},
+		#{g_NO}, #{f_THUMBNAIL}, #{f_DESC}, #{f_IMGURL}, #{f_URL},
+		#{f_SHOWLOWERPRICE}, #{f_STATE})
+	</insert>
+
+	<!-- 페스티벌 조회 -->
+	<select id="read" parameterType="int" resultType="com.finfo.domain.FestivalVO">
+		select *
+		from FESTIVAL
+		where f_NO =
+		#{f_NO}
+	</select>
+
+	<!-- 페스티벌 수정 -->
+	<update id="update" parameterType="com.finfo.domain.FestivalVO">
+		update FESTIVAL
+		set
+		f_SUBJECT = #{f_SUBJECT},
+		f_START = #{f_START},
+		f_END = #{f_END},
+		f_PLACE = #{f_PLACE},
+		f_TAG1 = #{f_TAG1},
+		f_TAG2 = #{f_TAG2},
+		g_NO = #{g_NO},
+		f_THUMBNAIL = #{f_THUMBNAIL},
+		f_DESC = #{f_DESC},
+		f_IMGURL = #{f_IMGURL},
+		f_URL = #{f_URL},
+		f_SHOWLOWERPRICE = #{f_SHOWLOWERPRICE},
+		f_STATE = #{f_STATE}
+		where f_NO = #{f_NO}
+	</update>
+
+	<!-- 페스티벌 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from
+		FESTIVAL
+		where f_NO = #{f_NO}
+	</delete>
+	
+	<!-- 페스티벌 목록 -->
+	<select id="list" resultType="com.finfo.domain.FestivalVO">
+		select f_NO, f_SUBJECT from FESTIVAL
+	</select>
+
+	<!-- 리뷰 등록 -->
+	<insert id="registReview" parameterType="com.finfo.domain.ReviewVO">
+		insert into REVIEW values (
+		 review_seq.nextval,#{f_NO},#{u_ID},#{r_CONTENT},#{r_REGDATE})
+	</insert>
+	
+	<!-- 리뷰 목록 -->
+	<select id="reviewList" parameterType="int" resultType="com.finfo.domain.ReviewVO">
+		select r_NO, u_ID, r_CONTENT, r_REGDATE from REVIEW
+		where f_NO = #{f_NO}
+	</select>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview">
+		delete REVIEW 
+		where r_NO = #{r_NO}
+			and u_ID = #{u_ID}
+	</delete>
+	
+	<!-- ID 본인 확인 -->
+	<select id="reviewIdCheck" resultType="String">
+		select u_ID 
+		from REVIEW
+			where r_NO = #{r_NO}
+	</select>
+	
+</mapper>
