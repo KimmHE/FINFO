@@ -1,21 +1,59 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<%@include file="../finfo/header.jsp"%>
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" type="text/css" href="/resources/styles/bootstrap4/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/product.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/product_responsive.css">
-<title>Detail</title>
+<script src="/resources/js/jquery-3.2.1.min.js"></script>
+<script src="/resources/js/jquery-3.2.1.min.js"></script>
+	<script src="/resources/styles/bootstrap4/popper.js"></script>
+	<script src="/resources/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="/resources/plugins/easing/easing.js"></script>
+	<script src="/resources/plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="/resources/js/product_custom.js"></script>
+	<script>
+	function reviewList(){
+		var f_NO = ${read.f_NO};
+		$.getJSON("/festival/read/reviewList" + "?f_NO=" + f_NO, function(data){
+			var str="";
+			$(data).each(function(){
+				console.log(data);
+										
+				var r_REGDATE = new Date(this.r_REGDATE);
+				r_REGDATE = r_REGDATE.toLocaleDateString("ko-US")
+										
+				str += "<li class='review clearfix' data-f_NO='" + this.f_NO + "'>"
+					+"<div class='review_image'>"
+					+"<img src='/resources/images/people.png' alt='review_img'>"
+					+"</div>"
+					+"<div class='review_content'>"
+					+"<div class='review_name'>NO." + this.r_NO + "</div>"
+					+"<div class='review_name'>" + this.u_ID + "</div>"
+					+"<div class='review_date'>" + r_REGDATE +"</div>"
+					+"<div class='review_text'><p>" + this.r_CONTENT+"</p></div>"
+					+"<c:if test='$member != null}'>"
+					+"<div class='review_footer'>"
+					+"<button type='button' class='review_button modify' data-r_NO='"+ this.r_NO+ "'>수정</button>"
+					+"<button type='button' class='review_button delete' data-r_NO='"+ this.r_NO+ "'>삭제</button>"
+					+"</div>"
+					+"</div>"
+					+"</c:if>"
+					+"</li>";
+			});
+									
+			$("section.reviews_container ul").html(str);
+		});
+	}
+	</script>
 </head>
-<body>
 	<div class="super_container">
 		<!-- Menu -->
 
@@ -62,7 +100,7 @@
 								<section class="home_title">${read.f_SUBJECT}</section>
 								<section class="breadcrumbs">
 									<ul>
-										<li><a href="index.html">Home</a></li>
+										<li><a href="/finfo/main">Home</a></li>
 										<li>Festival</li>
 										<li>${read.g_NO}</li>
 									</ul>
@@ -141,6 +179,7 @@
 						<div class="reviews_title">reviews</div>
 						<section class="reviews_container">
 							<ul>
+							<%-- ajax전 리뷰 test
 								<c:forEach items="${review}" var="review">
 									<!-- Review -->
 									<li class= "review clearfix">
@@ -159,7 +198,35 @@
 										</div>
 									</li>
 								</c:forEach>
+								--%>
 							</ul>
+							<script>
+								reviewList();
+							</script>
+							<script>
+								$(document).on("click",".delete",function(){
+									var deleteConfirm = confirm("정말 삭제하시겠습니까?");
+									if(deleteConfirm){
+									var data = {r_NO : $(this).attr("data-r_NO")};
+									
+									$.ajax({
+										url : "/festival/read/deleteReview",
+										type: "post",
+										data : data,
+										success : function(){
+											if(res == 1){
+												reviewList();
+											}else{
+												alert("작성자 본인만 삭제할 수 있습니다.")
+											}
+										},
+										error : function(){
+											alert("로그인을 해주세요.")
+										}
+									});
+									}
+								});
+							</script>
 						</section>
 					</div>
 				</div>
@@ -176,20 +243,41 @@
 								<a href="/member/login">로그인</a>후 소감을 남겨주세요.
 							</div>
 						</c:if>
-						
 						<c:if test="${member != null}">
 						<section class="review_form_content">
-							<form action="#" id="review_form" class="review_form" role="form" method="post" autocomplete="off">
+							<form id="review_form" class="review_form" role="form" method="post" autocomplete="off">
 								<div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
-									<input type="hidden" name="gdsNum" value="${read.f_NO}">
-									<input type="text" class="review_form_input" required="required" READONLY value="${member.u_NAME}"> 
-									<input type="email" class="review_form_input" required="required" READONLY value="${member.u_EMAIL}">
-								</div>
-								<textarea class="review_form_text" name="review_form_text"
-									placeholder="Message"></textarea>
-								<button type="submit" class="review_form_button">leave
+									<input type="hidden" name="f_NO" id="f_NO" value="${read.f_NO}">
+									</div>
+								<textarea class="review_form_text" name="review_form_text" id="reviewCon"
+									placeholder="Leave a Review"></textarea>
+								<button type="button" class="review_form_button">leave
 									a review</button>
 							</form>
+							
+							<script>
+								$(".review_form_button").click(function(){
+									
+									var formObj = $(".review_form_content form[role='form']");
+									var f_NO = $("#f_NO").val();
+									var r_CONTENT = $("#reviewCon").val();
+									
+									var data={
+											f_NO : f_NO,
+											r_CONTENT : r_CONTENT
+											};
+									
+									$.ajax({
+										url : "/festival/read/registerReview",
+										type : "post",
+										data : data,
+										success : function(){
+											reviewList();
+											$(".reviewCon").attr('placeholder','Leave a Review');
+										}
+									});
+								});
+							</script>
 						</section>
 						</c:if>
 					</div>
@@ -209,34 +297,6 @@
 	</div>
 
 	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="footer_logo">
-						<a href="#"><img src="/resources/images/Logo.png" alt="FINFO"></a>
-					</div>
-					<nav class="footer_nav">
-						<ul>
-							<li><a href="index.html">home</a></li>
-							<li><a href="categories.html">festival</a></li>
-							<li><a href="contact.html">contact</a></li>
-						</ul>
-					</nav>
-					<div class="copyright">Copyright &copy;SEOIL 2019All rights reserved
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-						
-	<script src="/resources/js/jquery-3.2.1.min.js"></script>
-	<script src="/resources/styles/bootstrap4/popper.js"></script>
-	<script src="/resources/styles/bootstrap4/bootstrap.min.js"></script>
-	<script src="/resources/plugins/easing/easing.js"></script>
-	<script src="/resources/plugins/parallax-js-master/parallax.min.js"></script>
-	<script src="/resources/js/product_custom.js"></script>
+	<%@include file="../finfo/footer.jsp"%>
 </body>
 </html>

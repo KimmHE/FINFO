@@ -10,5 +10,6 @@
 
 <p> The time on server is ${serverTime}.</p>
 <p><a href="/festival/list">list</a></p>
+<p><a href="/admin/festival/register">list</a></p>
 </body>
 </html>

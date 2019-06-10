@@ -50,7 +50,7 @@
 	
 	<!-- 페스티벌 목록 -->
 	<select id="list" resultType="com.finfo.domain.FestivalVO">
-		select f_NO, f_SUBJECT from FESTIVAL
+		select * from FESTIVAL
 	</select>
 
 	<!-- 리뷰 등록 -->
@@ -72,7 +72,7 @@
 			and u_ID = #{u_ID}
 	</delete>
 	
-	<!-- ID 본인 확인 -->
+	<!-- 리뷰 ID 본인 확인 -->
 	<select id="reviewIdCheck" resultType="String">
 		select u_ID 
 		from REVIEW

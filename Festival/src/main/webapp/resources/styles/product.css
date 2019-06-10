@@ -1212,3 +1212,29 @@ section
 {
 	margin-top: 99px;
 }
+
+/*list*/
+#content ul li{
+	display:inline-block; 
+	margin:10px;
+}
+.festivalList{
+	width:250px;
+	height:400px;
+	padding: 20px;
+}
+#content div.festivalThumb img{
+	width:200px;
+	height:200px;
+}
+#content div.festivalName{
+	width:200px;
+	height:80px;
+	padding:10px 0;
+	text-align:center;
+	vertical-align: middle;
+    display: table-cell;
+}
+#content div.festivalName a{
+	color:#000;
+}
