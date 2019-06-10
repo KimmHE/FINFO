@@ -13,13 +13,12 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/product.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/product_responsive.css">
 <script src="/resources/js/jquery-3.2.1.min.js"></script>
-<script src="/resources/js/jquery-3.2.1.min.js"></script>
-	<script src="/resources/styles/bootstrap4/popper.js"></script>
-	<script src="/resources/styles/bootstrap4/bootstrap.min.js"></script>
-	<script src="/resources/plugins/easing/easing.js"></script>
-	<script src="/resources/plugins/parallax-js-master/parallax.min.js"></script>
-	<script src="/resources/js/product_custom.js"></script>
-	<script>
+<script src="/resources/styles/bootstrap4/popper.js"></script>
+<script src="/resources/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="/resources/plugins/easing/easing.js"></script>
+<script src="/resources/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="/resources/js/product_custom.js"></script>
+<script>
 	function reviewList(){
 		var f_NO = ${read.f_NO};
 		$.getJSON("/festival/read/reviewList" + "?f_NO=" + f_NO, function(data){
@@ -52,7 +51,7 @@
 			$("section.reviews_container ul").html(str);
 		});
 	}
-	</script>
+</script>
 </head>
 	<div class="super_container">
 		<!-- Menu -->
@@ -298,5 +297,6 @@
 
 	<!-- Footer -->
 	<%@include file="../finfo/footer.jsp"%>
+	<script src="../resources/js/main.js"></script>
 </body>
 </html>

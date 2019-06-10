@@ -6,18 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/resources/styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
-<link rel="stylesheet" type="text/css" href="/resources/styles/product.css">
-<link rel="stylesheet" type="text/css" href="/resources/styles/product_responsive.css">
-<script src="/resources/js/jquery-3.2.1.min.js"></script>
-<script src="/resources/js/jquery-3.2.1.min.js"></script>
-<script src="/resources/styles/bootstrap4/popper.js"></script>
-<script src="/resources/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="/resources/plugins/easing/easing.js"></script>
-<script src="/resources/plugins/parallax-js-master/parallax.min.js"></script>
-<script src="/resources/js/product_custom.js"></script>
 </head>
 <body>
 <%-- <table border="1">
@@ -83,7 +72,7 @@
 									<h3> ${list.f_SUBJECT}</h3>
 									</header>
 									<footer class="align-center">
-										<a href="#" class="button alt">상세보기</a>
+										<a href="/festival/read?f_NO=${list.f_NO}" class="button alt detail-btn">상세보기</a>
 									</footer>
 								</div>
 							</div>
@@ -93,5 +82,7 @@
 				</div>
 			</section>
     <%@include file="../finfo/footer.jsp"%>
+    
+	<script src="/resources/js/main.js"></script>
 </body>
 </html>

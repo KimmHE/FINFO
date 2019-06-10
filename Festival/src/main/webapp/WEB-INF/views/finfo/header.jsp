@@ -23,7 +23,7 @@
 				<nav class="left">
 					<a href="#menu"><span>Menu</span></a>
 				</nav>
-				<div class="logo"><img src="../resources/images/logo1.png" style="padding-top: 1.5%;width: 13%;">
+				<div class="logo"><img src="/resources/images/logo1.png" style="padding-top: 1.5%;width: 13%;">
 				</div>
 				<!--  <a href="index.html" class="logo">intensify</a>-->
 				<nav class="right">

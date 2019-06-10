@@ -13,8 +13,8 @@
 				
 				<nav class="footer_nav">
 						<ul>
-							<li><a href="index.html">home</a></li>
-							<li><a href="categories.html">festival</a></li>
+							<li><a href="/">home</a></li>
+							<li><a href="/festival/list">festival</a></li>
 							<li><a href="contact.html">contact</a></li>
 						</ul>
 				</nav>
@@ -25,11 +25,11 @@
 			
 			
 			<!-- Scripts -->
-			<script src="../resources/js/jquery.min.js"></script>
-			<script src="../resources/js/jquery.scrollex.min.js"></script>
-			<script src="../resources/js/skel.min.js"></script>
-			<script src="../resources/js/util.js"></script>
-			<script src="../resources/js/main3.js"></script>
+			<script src="/resources/js/jquery.min.js"></script>
+			<script src="/resources/js/jquery.scrollex.min.js"></script>
+			<script src="/resources/js/skel.min.js"></script>
+			<script src="/resources/js/util.js"></script>
+			<script src="/resources/js/main3.js"></script>
 			
 
 			<script type="text/javascript">
