@@ -384,7 +384,55 @@ section
 /*********************************
 5. Menu
 *********************************/
+#header > a:hover {
+				color: #f2f2f2;
+			}
 
+			#header > a[href="#menu"] {
+				text-decoration: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+				#header > a[href="#menu"]:before {
+					content: "";
+					-moz-osx-font-smoothing: grayscale;
+					-webkit-font-smoothing: antialiased;
+					font-family: FontAwesome;
+					font-style: normal;
+					font-weight: normal;
+					text-transform: none !important;
+				}
+
+				#header > a[href="#menu"]:before {
+					margin: 0 0.5em 0 0;
+				}
+
+			#header > a + a[href="#menu"]:last-child {
+				border-left: solid 1px rgba(0, 0, 0, 0.15);
+				padding-left: 1.25em;
+				margin-left: 0.5em;
+			}
+
+			#header > a:last-child {
+				padding-right: 1.25em;
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#header > a {
+					padding: 0 0.5em;
+				}
+
+					#header > a + a[href="#menu"]:last-child {
+						padding-left: 1em;
+						margin-left: 0.25em;
+					}
+
+					#header > a:last-child {
+						padding-right: 1em;
+					}
+
+			}
 .menu
 {
 	position: fixed;
@@ -1108,4 +1156,12 @@ section
 	font-style: italic;
 	color: #FFFFFF;
 	margin-top: 19px;
+}
+
+.logo img{
+	vertical-align: top;
+}
+
+#header nav a{
+	color:5dc2a1 !important;
 }
