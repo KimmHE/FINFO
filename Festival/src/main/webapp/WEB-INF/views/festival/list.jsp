@@ -36,7 +36,7 @@
         	</c:forEach>
         </tbody>
     </table>
-    --%>
+    
     <section id="container">
     	<div id= "container-box">
     		<section id="content">
@@ -45,7 +45,9 @@
     					<li>
     						<div class="festivalList">
     						<div class="festivalThumb">
-    							<img src="/resources/images/${list.f_URL}" alt="">
+    							<a href="/festival/read?f_NO=${list.f_NO}">
+    								<img src="/resources/images/${list.f_URL}" alt="">
+    							</a>
     						</div>
     						<div class="festivalName"> 
     							<a href="/festival/read?f_NO=${list.f_NO}">${list.f_SUBJECT}</a>
@@ -57,6 +59,39 @@
     		</section>
     	</div>
     </section>
+    --%>
+    
+    <section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+					<c:forEach items="${list}" var="list">
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<a href="/festival/read?f_NO=${list.f_NO}">
+    								<img src="/resources/images/${list.f_URL}" alt="">
+    								</a>
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>
+										<fmt:formatDate pattern="yyyy.MM.dd" value="${list.f_START}"/>
+										~
+										<fmt:formatDate pattern="yyyy.MM.dd" value="${list.f_END}"/>
+										</p>
+									<h3> ${list.f_SUBJECT}</h3>
+									</header>
+									<footer class="align-center">
+										<a href="#" class="button alt">상세보기</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+						</c:forEach>
+					</div>
+				</div>
+			</section>
     <%@include file="../finfo/footer.jsp"%>
 </body>
 </html>
