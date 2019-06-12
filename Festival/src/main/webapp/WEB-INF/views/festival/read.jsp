@@ -6,9 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
 <link rel="stylesheet" type="text/css" href="/resources/styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/product.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/product_responsive.css">

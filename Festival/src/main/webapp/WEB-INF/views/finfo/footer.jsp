@@ -35,7 +35,7 @@
 			<script type="text/javascript">
 				$(document).ready(function(){
 					$(".logo").on("click", function(){
-						self.location = "/finfo/main";
+						self.location = "/";
 					});
 					
 					

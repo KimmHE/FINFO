@@ -1843,7 +1843,7 @@
 				left: 0;
 				width: 50%;
 				height: 1px;
-				background-color: rgba(0, 0, 0, 0.125);
+				background-color: #67c7c3;
 			}
 
 		.box .content {
@@ -2943,7 +2943,7 @@
 				.wrapper.style2 button.alt,
 				.wrapper.style2 .button.alt {
 					background-color: transparent;
-					box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.15);
+					box-shadow: inset 0 0 0 2px #67c7c3;
 					color: #000 !important;
 				}
 
