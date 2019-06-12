@@ -9,13 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.finfo.domain.Criteria;
 import com.finfo.domain.FestivalVO;
 import com.finfo.domain.MemberVO;
+import com.finfo.domain.PageDTO;
 import com.finfo.domain.ReviewVO;
 import com.finfo.service.FestivalService;
 
@@ -35,6 +38,21 @@ public class FestivalController {
 		
 		model.addAttribute("list",list);
 		logger.info("do List 실행");
+	}
+	
+	@RequestMapping("/listPage")
+	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+		List<FestivalVO> list = null;
+		list = service.listPage(cri);
+		
+		model.addAttribute("list",list);
+		
+		PageDTO page = new PageDTO();
+		page.setCri(cri);
+		page.setTotalCount(service.listCount());
+		model.addAttribute("page", page);
+		
+		logger.info("do List Page실행");
 	}
 	
 	@RequestMapping("/read")

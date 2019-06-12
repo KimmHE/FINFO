@@ -1,37 +1,77 @@
 package com.finfo.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
 public class PageDTO {
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev, next;
+	private int displayPageNum = 10;
 
-  private int startPage;
-  private int endPage;
-  private boolean prev, next;
+	private Criteria cri;
 
-  private int total;
-  private Criteria cri;
+	public void setCri(Criteria cri) {
+		this.cri = cri;
+	}
 
-  public PageDTO(Criteria cri, int total) {
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+		calcData();
+	}
 
-    this.cri = cri;
-    this.total = total;
+	public int getTotalCount() {
+		return totalCount;
+	}
 
-    this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
+	public int getStartPage() {
+		return startPage;
+	}
 
-    this.startPage = this.endPage - 9;
+	public int getEndPage() {
+		return endPage;
+	}
 
-    int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
+	public boolean isPrev() {
+		return prev;
+	}
 
-    if (realEnd <= this.endPage) {
-      this.endPage = realEnd;
-    }
+	public boolean isNext() {
+		return next;
+	}
 
-    this.prev = this.startPage > 1;
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
 
-    this.next = this.endPage < realEnd;
-  }
-  
-}//end PageDTO
+	public Criteria getCri() {
+		return cri;
+	}
+
+	private void calcData() {
+		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
+		startPage = (endPage - displayPageNum) + 1;
+
+		int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
+		if (endPage > tempEndPage) {
+			endPage = tempEndPage;
+		}
+		prev = startPage == 1 ? false : true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.build();
+		return uriComponents.toUriString();
+	}
+
+}// end PageDTO

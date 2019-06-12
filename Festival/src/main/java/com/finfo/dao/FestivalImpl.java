@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.finfo.domain.Criteria;
 import com.finfo.domain.FestivalVO;
 import com.finfo.domain.ReviewVO;
 
@@ -61,6 +62,16 @@ public class FestivalImpl implements FestivalDAO {
 	@Override
 	public String reviewIdCheck(int r_NO) throws Exception {
 		return sql.selectOne(namespace+".reviewIdCheck", r_NO);
+	}
+
+	@Override
+	public List<FestivalVO> listPage(Criteria cri) throws Exception {
+		return sql.selectList(namespace+".listPage",cri);
+	}
+
+	@Override
+	public int listCount() throws Exception {
+		return sql.selectOne(namespace+".listCount");
 	}
 
 }

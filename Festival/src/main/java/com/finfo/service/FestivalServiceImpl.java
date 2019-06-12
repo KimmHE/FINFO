@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.finfo.dao.FestivalDAO;
+import com.finfo.domain.Criteria;
 import com.finfo.domain.FestivalVO;
 import com.finfo.domain.ReviewVO;
 
@@ -61,6 +62,16 @@ public class FestivalServiceImpl implements FestivalService {
 	@Override
 	public String reviewIdCheck(int r_NO) throws Exception {
 		return dao.reviewIdCheck(r_NO);
+	}
+
+	@Override
+	public List<FestivalVO> listPage(Criteria cri) throws Exception {
+		return dao.listPage(cri);
+	}
+
+	@Override
+	public int listCount() throws Exception {
+		return dao.listCount();
 	}
 
 }

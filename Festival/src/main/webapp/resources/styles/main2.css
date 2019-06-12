@@ -3114,7 +3114,7 @@
 		@media screen and (max-width: 480px) {
 
 			#one .image.fit {
-				margin: 0 auto 2em auto;
+				margin: 1em auto 2em auto;
 				max-width: 90%;
 			}
 
@@ -3217,4 +3217,15 @@
 .content h3{
 	height:50px;
 	padding:10px;
+}
+.pageIdx{
+	text-align:center;
+}
+.pageIdx ul li{
+	display:inline;
+	list-style:none;
+}
+.pageIdx a{
+	color:#5dc2a1 !important;
+	text-decoration:none;
 }
