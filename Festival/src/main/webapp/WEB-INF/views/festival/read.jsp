@@ -87,7 +87,7 @@
 						<ul>
 							<li><a href="/finfo/main">Home</a></li>
 							<li><a href="/festival/listPage">Festival</a></li>
-							<li><a href="/festival/listPage">${read.g_NO}</a></li>
+							<li class="g_no">${read.g_NO}</li>
 							<li>${read.f_SUBJECT}</li>
 						</ul>
 					</section>
@@ -133,11 +133,13 @@
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${read.f_END}" />
 							</h5>
 							<h5>장소 : ${read.f_PLACE}</h5>
-							<h5>사이트 URL : ${read.f_URL}</h5>
+							<h5>사이트 URL :</h5>
+							<a href="${read.f_URL}">${read.f_URL}</a>
+							
 							<h5>가격 :</h5>${read.f_PRICE}
 						</div>
 						<div class="button cart_button">
-							<a href="#">최저가 보러 가기</a>
+							<a href="${read.f_URL}">자세한 정보 보기</a>
 						</div>
 					</div>
 				</section>
