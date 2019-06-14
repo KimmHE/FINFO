@@ -74,4 +74,9 @@ public class FestivalImpl implements FestivalDAO {
 		return sql.selectOne(namespace+".listCount");
 	}
 
+	@Override
+	public void modifyReview(ReviewVO review) throws Exception {
+		sql.update(namespace +".modifyReview",review);
+	}
+
 }

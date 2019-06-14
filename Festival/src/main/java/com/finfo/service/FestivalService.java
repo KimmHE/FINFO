@@ -19,4 +19,5 @@ public interface FestivalService {
 	public int listCount() throws Exception;
 	public void deleteReview(ReviewVO review) throws Exception;
 	public String reviewIdCheck(int r_NO) throws Exception;
+	public void modifyReview(ReviewVO review) throws Exception;
 }

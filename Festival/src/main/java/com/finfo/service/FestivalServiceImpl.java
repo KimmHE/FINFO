@@ -74,4 +74,9 @@ public class FestivalServiceImpl implements FestivalService {
 		return dao.listCount();
 	}
 
+	@Override
+	public void modifyReview(ReviewVO review) throws Exception {
+		dao.modifyReview(review);
+	}
+
 }

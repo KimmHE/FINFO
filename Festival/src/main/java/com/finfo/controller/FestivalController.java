@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finfo.domain.Criteria;
 import com.finfo.domain.FestivalVO;
-import com.finfo.domain.MemberVO;
+import com.finfo.domain.UserVO;
 import com.finfo.domain.PageDTO;
 import com.finfo.domain.ReviewVO;
 import com.finfo.service.FestivalService;
@@ -70,8 +70,8 @@ public class FestivalController {
 	
 	public String registerReiew (ReviewVO review, HttpSession session) throws Exception {
 		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		review.setU_ID(member.getU_EMAIL());
+		UserVO user = (UserVO)session.getAttribute("user");
+		review.setU_ID(user.getU_EMAIL());
 		
 		service.registReview(review);
 		
@@ -85,8 +85,8 @@ public class FestivalController {
 	@RequestMapping(value="/read/registerReview", method = RequestMethod.POST)
 	public void resisterReview(ReviewVO review,HttpSession session) throws Exception{
 		logger.info("register review");
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		review.setU_ID(member.getU_EMAIL());
+		UserVO user = (UserVO)session.getAttribute("user");
+		review.setU_EMAIL(user.getU_EMAIL());
 		
 		service.registReview(review);
 	}
@@ -122,11 +122,11 @@ public class FestivalController {
 		
 		int res=0;
 		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		String u_ID = service.reviewIdCheck(review.getR_NO());
+		UserVO user = (UserVO)session.getAttribute("user");
+		String u_EMAIL = service.reviewIdCheck(review.getR_NO());
 		
-		if(member.getU_EMAIL().equals(u_ID)) {
-			review.setU_ID(member.getU_EMAIL());
+		if(user.getU_EMAIL().equals(u_EMAIL)) {
+			review.setU_EMAIL(user.getU_EMAIL());
 			service.deleteReview(review);
 			
 			res=1;
@@ -134,4 +134,26 @@ public class FestivalController {
 		
 		return res;
 	}
+	
+	//리뷰 삭제 
+		@ResponseBody
+		@RequestMapping(value="/read/modifyReview", method = RequestMethod.POST)
+		public int modifyReview (ReviewVO review,HttpSession session) throws Exception{
+			logger.info("modify review");
+			
+			int result=0;
+			
+			UserVO user = (UserVO)session.getAttribute("user");
+			String u_EMAIL = service.reviewIdCheck(review.getR_NO());
+			
+			if(user.getU_EMAIL().equals(u_EMAIL)) {
+				review.setU_EMAIL(user.getU_EMAIL());
+				service.deleteReview(review);
+				
+				result=1;
+			}
+			
+			return result;
+		}
+	
 }

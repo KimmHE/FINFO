@@ -72,12 +72,12 @@
 	<!-- 리뷰 등록 -->
 	<insert id="registReview" parameterType="com.finfo.domain.ReviewVO">
 		insert into REVIEW values (
-		 review_seq.nextval,#{f_NO},#{u_ID},#{r_CONTENT},#{r_REGDATE})
+		 review_seq.nextval,#{f_NO},#{u_EMAIL},#{r_CONTENT},sysdate)
 	</insert>
 	
 	<!-- 리뷰 목록 -->
 	<select id="reviewList" parameterType="int" resultType="com.finfo.domain.ReviewVO">
-		select r_NO, u_ID, r_CONTENT, r_REGDATE from REVIEW
+		select r_NO, u_EMAIL, r_CONTENT, r_REGDATE from REVIEW
 		where f_NO = #{f_NO}
 	</select>
 	
@@ -85,14 +85,22 @@
 	<delete id="deleteReview">
 		delete REVIEW 
 		where r_NO = #{r_NO}
-			and u_ID = #{u_ID}
+			and u_EMAIL = #{u_EMAIL}
 	</delete>
 	
 	<!-- 리뷰 ID 본인 확인 -->
 	<select id="reviewIdCheck" resultType="String">
-		select u_ID 
+		select u_EMAIL
 		from REVIEW
 			where r_NO = #{r_NO}
 	</select>
 	
+	<!-- 리뷰 수정 -->
+	<update id="modifyReview">
+		update REVIEW 
+		set 
+			r_CONTENT = #{r_CONTENT}
+			where r_NO = #{r_NO}
+				and u_EMAIL = #{u_EMAIL}
+	</update>
 </mapper>

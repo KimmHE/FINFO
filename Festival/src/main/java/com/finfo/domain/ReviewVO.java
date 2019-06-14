@@ -12,7 +12,7 @@ import lombok.Data;
 public class ReviewVO {
 	private int r_NO;
 	private int f_NO;
-	private String u_ID;
+	private String u_EMAIL;
 	private String r_CONTENT;
 	@DateTimeFormat(pattern="yyyy/mm/dd")
 	private Date r_REGDATE;

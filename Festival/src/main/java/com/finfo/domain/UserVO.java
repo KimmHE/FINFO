@@ -1,12 +1,9 @@
 package com.finfo.domain;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 
-@Component
 @Data
-public class MemberVO {
+public class UserVO {
 	private int u_NO;
 	private String u_PASSWORD;
 	private String u_EMAIL;
