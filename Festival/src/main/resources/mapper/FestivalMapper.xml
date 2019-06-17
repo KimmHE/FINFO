@@ -57,11 +57,11 @@
 				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
 			from festival f inner join genre g on f.g_no = g.g_no 
 				inner join users u on u.u_like1 = g.g_name
-			where u_like1 = #{u_like1} and ROWNUM>=1 and ROWNUM<= 4
+			where u_like1 = #{u_like1,jdbcType=VARCHAR} and ROWNUM>=1 and ROWNUM<= 4
 		]]>
 	</select>
 	
-	<!-- 페스티벌 선호도2 목록 -->
+	<!-- 페스티벌 선호도2 목록-->
 	<select id="list2" resultType="com.finfo.domain.FestivalVO">
 		<![CDATA[ 
 			select f.f_no, f.f_subject, f.f_start, f.f_end,
@@ -69,10 +69,9 @@
 				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
 			from festival f inner join genre g on f.g_no = g.g_no 
 				inner join users u on u.u_like1 = g.g_name
-			where u_like2 = #{u_like2} and ROWNUM>=1 and ROWNUM<= 4
+			where u_like2 = #{u_like2,jdbcType=VARCHAR} and ROWNUM>=1 and ROWNUM<= 4
 		]]>
 	</select>
-	
 	<!-- 페스티벌 장르별 목록 -->
 	<select id="listGenre" resultType="com.finfo.domain.FestivalVO">
 		<![CDATA[ 

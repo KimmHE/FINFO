@@ -1,9 +1,6 @@
 package com.finfo.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -24,51 +21,22 @@ import com.finfo.service.FestivalService;
 public class HomeController {
 	@Inject
 	FestivalService service;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String getlist(Model model) throws Exception {
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
+		logger.info("do List 실행");
+		
+		List<FestivalVO> list = service.list();
+		model.addAttribute("list", list);
+		List<FestivalVO> list2 = service.list2();
+		model.addAttribute("list2", list2);
+		List<FestivalVO> listGenre = service.listGenre();
+		model.addAttribute("listGenre", listGenre);
 
 		return "/finfo/main";
-	}
-
-	public void list(Model model) throws Exception {
-		List<FestivalVO> list = null;
-		list = service.list();
-
-		List<FestivalVO> list2 = null;
-		list2 = service.list2();
-		
-		model.addAttribute("list", list);
-		model.addAttribute("list2", list2);
-		
-		logger.info("do List 실행");
-		logger.info("do List2 실행");
-		
-		
-	}
-	@RequestMapping("/")
-	public void listGenre(Model model) throws Exception {
-		List<FestivalVO> listGenre = null;
-		listGenre = service.listGenre();
-
-		model.addAttribute("listGenre", listGenre);
-		
-		logger.info("do List3 실행");
-		
-		
 	}
 
 }
