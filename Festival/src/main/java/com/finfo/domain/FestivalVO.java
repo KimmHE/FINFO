@@ -21,6 +21,7 @@ public class FestivalVO {
 	private String	f_TAG1;
 	private String	f_TAG2;
 	private int	g_NO;
+	private String	g_NAME;
 	private String	f_THUMBNAIL;
 	private String	f_DESC;
 	private String	f_IMGURL;

@@ -15,10 +15,11 @@
 
 	<!-- 페스티벌 조회 -->
 	<select id="read" parameterType="int" resultType="com.finfo.domain.FestivalVO">
-		select *
-		from FESTIVAL
-		where f_NO =
-		#{f_NO}
+		select f.f_no, f.f_subject , f.f_subtitle, f.f_start, f.f_end,
+			f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+			f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+		from festival f inner join genre g on f.g_no = g.g_no
+		where f_NO= #{f_NO}
 	</select>
 
 	<!-- 페스티벌 수정 -->
@@ -48,18 +49,21 @@
 		where f_NO = #{f_NO}
 	</delete>
 	
-	<!-- 페스티벌 목록 -->
+	<!-- 페스티벌 목록 
 	<select id="list" resultType="com.finfo.domain.FestivalVO">
 		select * from FESTIVAL
 	</select>
+	-->
 	
-	<!-- 페이징 -->
+	<!-- 목록 + 페이징 -->
 	<select id="listPage" resultType="com.finfo.domain.FestivalVO" parameterType="com.finfo.domain.Criteria">
-		select * from FESTIVAL
+		select f.f_no, f.f_subject , f.f_subtitle, f.f_start, f.f_end,
+			f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+			f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+		from festival f inner join genre g on f.g_no = g.g_no
 		where F_NO between ${rowStart} and ${rowEnd}
 		order by F_NO desc
 	</select>
-	
 	
 	<select id = "listCount" resultType="int">
 		<![CDATA[

@@ -36,13 +36,6 @@
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="#">마이페이지</a></li>
-					<li><a href="/festival/listPage">페스티벌</a>
-					</li>
-					<li><a href="#">Elements</a></li>
+					<li><a href="/festival/listPage">페스티벌</a></li>
 				</ul>
 			</nav>
-			
-			
-			
-			
-    

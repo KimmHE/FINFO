@@ -28,8 +28,9 @@
 										~
 										<fmt:formatDate pattern="yyyy.MM.dd" value="${list.f_END}"/>
 										</p>
+										
+									<div class="genre">${list.g_NAME}</div>
 									<h3> ${list.f_SUBJECT}</h3>
-									<h3> ${list.f_SUBTITLE}</h3>
 									</header>
 									<footer class="align-center">
 										<a href="/festival/read?f_NO=${list.f_NO}" class="button alt detail-btn">상세보기</a>

@@ -87,7 +87,7 @@
 						<ul>
 							<li><a href="/finfo/main">Home</a></li>
 							<li><a href="/festival/listPage">Festival</a></li>
-							<li class="g_no">${read.g_NO}</li>
+							<li>${read.g_NAME}</li>
 							<li>${read.f_SUBJECT}</li>
 						</ul>
 					</section>
@@ -119,6 +119,7 @@
 						<div class="product_name">${read.f_SUBJECT}</div>
 						<div class="product_tag">${read.f_SUBTITLE}</div>
 						<div class="tag_wrap">
+							<div class="product_tag"># ${read.g_NAME}</div>
 							<div class="product_tag"># ${read.f_TAG1}</div>
 							<div class="product_tag"># ${read.f_TAG2}</div>
 						</div>
