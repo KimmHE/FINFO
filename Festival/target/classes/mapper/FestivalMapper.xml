@@ -72,6 +72,7 @@
 			where u_like2 = #{u_like2,jdbcType=VARCHAR} and ROWNUM>=1 and ROWNUM<= 4
 		]]>
 	</select>
+	
 	<!-- 페스티벌 장르별 목록 -->
 	<select id="listGenre" resultType="com.finfo.domain.FestivalVO">
 		<![CDATA[ 
@@ -80,6 +81,29 @@
 				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
 			from festival f inner join genre g on f.g_no = g.g_no 
 			where g.g_no = 1 and ROWNUM>=1 and ROWNUM<= 4
+		]]>
+	</select>
+	
+	<!-- 페스티벌 장르별 목록 -->
+	<select id="listGenre2" resultType="com.finfo.domain.FestivalVO">
+		<![CDATA[ 
+			select f.f_no, f.f_subject, f.f_start, f.f_end,
+				f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+			from festival f inner join genre g on f.g_no = g.g_no 
+			where f_state = 2 and ROWNUM>=1 and ROWNUM<= 4
+		]]>
+	</select>
+	
+	<!-- 페스티벌 장르별 목록 -->
+	<select id="listGenre3" resultType="com.finfo.domain.FestivalVO">
+		<![CDATA[ 
+			select f.f_no, f.f_subject, f.f_start, f.f_end,
+				f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+			from festival f inner join genre g on f.g_no = g.g_no 
+			where ROWNUM>=1 and ROWNUM<= 4
+			order by f_end
 		]]>
 	</select>
 	

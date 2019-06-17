@@ -31,10 +31,18 @@ public class HomeController {
 		
 		List<FestivalVO> list = service.list();
 		model.addAttribute("list", list);
+		
 		List<FestivalVO> list2 = service.list2();
 		model.addAttribute("list2", list2);
+		
 		List<FestivalVO> listGenre = service.listGenre();
 		model.addAttribute("listGenre", listGenre);
+		
+		List<FestivalVO> listGenre2 = service.listGenre2();
+		model.addAttribute("listGenre2", listGenre2);
+		
+		List<FestivalVO> listGenre3 = service.listGenre3();
+		model.addAttribute("listGenre3", listGenre3);
 
 		return "/finfo/main";
 	}

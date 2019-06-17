@@ -3271,3 +3271,14 @@
 	text-decoration:none !important;
 	color: #25a2c3 !important;
 }
+.list-label
+{
+	text-align: center;
+    font-size: 1.5rem;
+    color: #25a2c3;
+    padding: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    background: #25a2c324;
+    margin: 1em 0;
+}

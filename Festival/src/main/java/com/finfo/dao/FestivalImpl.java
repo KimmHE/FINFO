@@ -89,4 +89,14 @@ public class FestivalImpl implements FestivalDAO {
 		return sql.selectList(namespace+".listGenre");
 	}
 
+	@Override
+	public List<FestivalVO> listGenre2() throws Exception {
+		return sql.selectList(namespace+".listGenre2");
+	}
+
+	@Override
+	public List<FestivalVO> listGenre3() throws Exception {
+		return sql.selectList(namespace+".listGenre3");
+	}
+
 }

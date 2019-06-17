@@ -15,6 +15,8 @@ public interface FestivalDAO {
 	public List<FestivalVO> list() throws Exception;
 	public List<FestivalVO> list2() throws Exception;
 	public List<FestivalVO> listGenre() throws Exception;
+	public List<FestivalVO> listGenre2() throws Exception;
+	public List<FestivalVO> listGenre3() throws Exception;
 	public List<FestivalVO> listPage(Criteria cri) throws Exception;
 	public int listCount() throws Exception;
 	public void registReview(ReviewVO review) throws Exception;

@@ -62,8 +62,8 @@
 	</c:if>
 	<c:if test="${user != null}">
 		<div class="inner">
+			<div class="list-label">이런 FESTIVAL은 어때요?</div>
 			<div class="grid-style">
-				<div>이런 FESTIVAL은 어때요?</div>
 				<c:forEach items="${list}" var="list">
 					<div class="list-wrapper">
 						<div class="box">
@@ -95,7 +95,6 @@
 		</div>
 		<div class="inner">
 			<div class="grid-style">
-
 				<c:forEach items="${list2}" var="list2">
 					<div class="list-wrapper">
 						<div class="box">
@@ -137,8 +136,9 @@
 	</div>
 </section>
 
-<section  id="three" class="wrapper style2">
+<section id="three" class="wrapper style2">
 	<div class="inner">
+	<div class="list-label">Enjoy Various FESTIVALS!</div>
 		<div class="grid-style">
 			<c:forEach items="${listGenre}" var="listGenre">
 				<div class="list-wrapper">
@@ -151,7 +151,8 @@
 						<div class="content">
 							<header class="align-center">
 								<p>
-									<fmt:formatDate pattern="yyyy.MM.dd" value="${listGenre.f_START}" />
+									<fmt:formatDate pattern="yyyy.MM.dd"
+										value="${listGenre.f_START}" />
 									~
 									<fmt:formatDate pattern="yyyy.MM.dd" value="${listGenre.f_END}" />
 								</p>
@@ -161,6 +162,80 @@
 							</header>
 							<footer class="align-center">
 								<a href="/festival/read?f_NO=${listGenre.f_NO}"
+									class="button alt detail-btn">상세보기</a>
+							</footer>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</section>
+
+<section id="four" class="wrapper style2">
+	<div class="inner">
+		<div class="list-label">Enjoy The Ongoing FESTIVALS!</div>
+		<div class="grid-style">
+			<c:forEach items="${listGenre2}" var="listGenre2">
+				<div class="list-wrapper">
+					<div class="box">
+						<div class="image fit">
+							<a href="/festival/read?f_NO=${listGenre2.f_NO}"> <img
+								src="/resources/images/${listGenre2.f_THUMBNAIL}" alt="">
+							</a>
+						</div>
+						<div class="content">
+							<header class="align-center">
+								<p>
+									<fmt:formatDate pattern="yyyy.MM.dd"
+										value="${listGenre2.f_START}" />
+									~
+									<fmt:formatDate pattern="yyyy.MM.dd"
+										value="${listGenre2.f_END}" />
+								</p>
+
+								<div class="genre">${listGenre2.g_NAME}</div>
+								<h3>${listGenre2.f_SUBJECT}</h3>
+							</header>
+							<footer class="align-center">
+								<a href="/festival/read?f_NO=${listGenre2.f_NO}"
+									class="button alt detail-btn">상세보기</a>
+							</footer>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</section>
+
+<section id="five" class="wrapper style2">
+	<div class="inner">
+		<div class="list-label">Enjoy The Festivals Until It's Over.</div>
+		<div class="grid-style">
+			<c:forEach items="${listGenre3}" var="listGenre3">
+				<div class="list-wrapper">
+					<div class="box">
+						<div class="image fit">
+							<a href="/festival/read?f_NO=${listGenre3.f_NO}"> <img
+								src="/resources/images/${listGenre3.f_THUMBNAIL}" alt="">
+							</a>
+						</div>
+						<div class="content">
+							<header class="align-center">
+								<p>
+									<fmt:formatDate pattern="yyyy.MM.dd"
+										value="${listGenre3.f_START}" />
+									~
+									<fmt:formatDate pattern="yyyy.MM.dd"
+										value="${listGenre3.f_END}" />
+								</p>
+
+								<div class="genre">${listGenre3.g_NAME}</div>
+								<h3>${listGenre3.f_SUBJECT}</h3>
+							</header>
+							<footer class="align-center">
+								<a href="/festival/read?f_NO=${listGenre3.f_NO}"
 									class="button alt detail-btn">상세보기</a>
 							</footer>
 						</div>

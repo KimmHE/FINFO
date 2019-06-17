@@ -89,4 +89,14 @@ public class FestivalServiceImpl implements FestivalService {
 		return dao.listGenre();
 	}
 
+	@Override
+	public List<FestivalVO> listGenre2() throws Exception {
+		return dao.listGenre2();
+	}
+
+	@Override
+	public List<FestivalVO> listGenre3() throws Exception {
+		return dao.listGenre3();
+	}
+
 }
