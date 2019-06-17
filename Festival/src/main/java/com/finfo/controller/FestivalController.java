@@ -31,15 +31,6 @@ public class FestivalController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
 	
-	@RequestMapping("/list")
-	public void list(Model model) throws Exception{
-		List<FestivalVO> list = null;
-		list = service.list();
-		
-		model.addAttribute("list",list);
-		logger.info("do List 실행");
-	}
-	
 	@RequestMapping("/listPage")
 	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
 		List<FestivalVO> list = null;

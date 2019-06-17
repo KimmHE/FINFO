@@ -15,7 +15,7 @@
 
 	<!-- 페스티벌 조회 -->
 	<select id="read" parameterType="int" resultType="com.finfo.domain.FestivalVO">
-		select f.f_no, f.f_subject , f.f_subtitle, f.f_start, f.f_end,
+		select f.f_no, f.f_subject, f.f_start, f.f_end,
 			f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
 			f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
 		from festival f inner join genre g on f.g_no = g.g_no
@@ -49,15 +49,44 @@
 		where f_NO = #{f_NO}
 	</delete>
 	
-	<!-- 페스티벌 목록 
+	<!-- 페스티벌 선호도 목록 -->
 	<select id="list" resultType="com.finfo.domain.FestivalVO">
-		select * from FESTIVAL
+		<![CDATA[ 
+			select f.f_no, f.f_subject, f.f_start, f.f_end,
+				f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+			from festival f inner join genre g on f.g_no = g.g_no 
+				inner join users u on u.u_like1 = g.g_name
+			where u_like1 = #{u_like1} and ROWNUM>=1 and ROWNUM<= 4
+		]]>
 	</select>
-	-->
+	
+	<!-- 페스티벌 선호도2 목록 -->
+	<select id="list2" resultType="com.finfo.domain.FestivalVO">
+		<![CDATA[ 
+			select f.f_no, f.f_subject, f.f_start, f.f_end,
+				f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+			from festival f inner join genre g on f.g_no = g.g_no 
+				inner join users u on u.u_like1 = g.g_name
+			where u_like2 = #{u_like2} and ROWNUM>=1 and ROWNUM<= 4
+		]]>
+	</select>
+	
+	<!-- 페스티벌 장르별 목록 -->
+	<select id="listGenre" resultType="com.finfo.domain.FestivalVO">
+		<![CDATA[ 
+			select f.f_no, f.f_subject, f.f_start, f.f_end,
+				f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
+				f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
+			from festival f inner join genre g on f.g_no = g.g_no 
+			where g.g_no = 1 and ROWNUM>=1 and ROWNUM<= 4
+		]]>
+	</select>
 	
 	<!-- 목록 + 페이징 -->
 	<select id="listPage" resultType="com.finfo.domain.FestivalVO" parameterType="com.finfo.domain.Criteria">
-		select f.f_no, f.f_subject , f.f_subtitle, f.f_start, f.f_end,
+		select f.f_no, f.f_subject, f.f_start, f.f_end,
 			f.f_place, f.f_tag1, f.f_tag2, f.g_no, g.g_name , f.f_thumbnail,
 			f.f_desc, f.f_imgurl, f.f_url, f.f_price, f.f_showlowprice, f.f_state
 		from festival f inner join genre g on f.g_no = g.g_no
@@ -76,7 +105,7 @@
 	<!-- 리뷰 등록 -->
 	<insert id="registReview" parameterType="com.finfo.domain.ReviewVO">
 		insert into REVIEW values (
-		 review_seq.nextval,#{f_NO},#{u_EMAIL},#{r_CONTENT},sysdate)
+		 review_seq.nextval,#{f_NO}, #{u_EMAIL}, #{r_CONTENT}, sysdate)
 	</insert>
 	
 	<!-- 리뷰 목록 -->

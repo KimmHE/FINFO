@@ -117,7 +117,6 @@
 				<section class="col-lg-5">
 					<div class="product_content">
 						<div class="product_name">${read.f_SUBJECT}</div>
-						<div class="product_tag">${read.f_SUBTITLE}</div>
 						<div class="tag_wrap">
 							<div class="product_tag"># ${read.g_NAME}</div>
 							<div class="product_tag"># ${read.f_TAG1}</div>

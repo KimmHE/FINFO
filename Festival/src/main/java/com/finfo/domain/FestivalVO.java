@@ -12,7 +12,6 @@ import lombok.Data;
 public class FestivalVO {
 	private int f_NO;
 	private String f_SUBJECT ;
-	private String f_SUBTITLE ;
 	@DateTimeFormat(pattern="yyyy/mm/dd")
 	private Date f_START;
 	@DateTimeFormat(pattern="yyyy/mm/dd")
@@ -22,6 +21,8 @@ public class FestivalVO {
 	private String	f_TAG2;
 	private int	g_NO;
 	private String	g_NAME;
+	private String	u_LIKE1;
+	private String	u_LIKE2;
 	private String	f_THUMBNAIL;
 	private String	f_DESC;
 	private String	f_IMGURL;
